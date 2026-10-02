@@ -1,34 +1,20 @@
-let randomNumber = Math.floor(Math.random*10)+1;
-const guessNumber = document.getElementByIdId("guessNumber");
-const enterBtn = document.getElementById("enterBtn");
-const result = document.getElementById("result");
+let randomNumber = Math.floor(Math.random() * 10) + 1;
 
-const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: "btn btn-success",
-    cancelButton: "btn btn-danger"
-  },
-  buttonsStyling: false
-});
-swalWithBootstrapButtons.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonText: "Yes, delete it!",
-  cancelButtonText: "No, cancel!",
-  reverseButtons: true
-}).then((result) => {
-  if (result.isConfirmed) swalWithBootstrapButtons.fire({
-    title: "Deleted!",
-    text: "Your file has been deleted.",
-    icon: "success"
-  });
-  else if (result.dismiss === Swal.DismissReason.cancel)
- /* Read more about handling dismissals below */
-  swalWithBootstrapButtons.fire({
-    title: "Cancelled",
-    text: "Your imaginary file is safe :)",
-    icon: "error"
-  });
-});
+function guessNumberOnAction(){
+
+    let txtGuessNumber = document.getElementById("txtGuessNumber");
+    let lblResult = document.getElementById("lblResult");
+
+    let guessNumber = Number(txtGuessNumber.value);
+
+    if(guessNumber < 1 || guessNumber > 10){
+      lblResult.innerHTML = "Please enter a number between 1 and 10";
+    }else if(guessNumber == randomNumber){
+      lblResult.innerHTML = "Correct! You guessed the number.";
+
+    }else{
+
+        lblResult.innerHTML = "Wrong! Try again.";
+
+    }
+}
